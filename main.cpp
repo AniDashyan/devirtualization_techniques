@@ -53,7 +53,7 @@ int main() {
     std::cout << "=== Devirtualization Techniques Demo ===" << std::endl;
     
     const int num_objects = 10000;
-    const int iters = 10000;
+    const int iters = 1000;
     
     std::vector<std::unique_ptr<Shape>> shapes;
     std::vector<Circle> circles;

@@ -20,26 +20,25 @@ endif()
 
 target_compile_options(devirt_enabled_final PRIVATE
     ${COMMON_FLAGS}
-    -fdevirtualize         # Enable devirtualization
+    $<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-fdevirtualize>
 )
 target_compile_definitions(devirt_enabled_final PRIVATE ENABLE_FINAL=1)
 
 target_compile_options(devirt_enabled_nofinal PRIVATE
     ${COMMON_FLAGS}
-    -fdevirtualize         
+    $<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-fdevirtualize>
 )
 target_compile_definitions(devirt_enabled_nofinal PRIVATE ENABLE_FINAL=0)
 
-
 target_compile_options(devirt_disabled_final PRIVATE
     ${COMMON_FLAGS}
-    -fno-devirtualize      # Disable devirtualization
+    $<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-fno-devirtualize>
 )
 target_compile_definitions(devirt_disabled_final PRIVATE ENABLE_FINAL=1)
 
 target_compile_options(devirt_disabled_nofinal PRIVATE
     ${COMMON_FLAGS}
-    -fno-devirtualize      # Disable devirtualization
+    $<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-fno-devirtualize>
 )
 target_compile_definitions(devirt_disabled_nofinal PRIVATE ENABLE_FINAL=0)
 
