@@ -44,17 +44,17 @@ target_compile_definitions(devirt_disabled_nofinal PRIVATE ENABLE_FINAL=0)
 
 # Custom target for comprehensive benchmark
 add_custom_target(benchmark
-    COMMAND echo "=== Comprehensive Performance Comparison ==="
-    COMMAND echo "1. Devirtualization ENABLED + final ENABLED:"
-    COMMAND ./devirt_enabled_final
-    COMMAND echo ""
-    COMMAND echo "2. Devirtualization ENABLED + final DISABLED:"
-    COMMAND ./devirt_enabled_nofinal
-    COMMAND echo ""
-    COMMAND echo "3. Devirtualization DISABLED + final ENABLED:"
-    COMMAND ./devirt_disabled_final
-    COMMAND echo ""
-    COMMAND echo "4. Devirtualization DISABLED + final DISABLED:"
-    COMMAND ./devirt_disabled_nofinal
+    COMMAND ${CMAKE_COMMAND} -E echo "=== Comprehensive Performance Comparison ==="
+    COMMAND ${CMAKE_COMMAND} -E echo "1. Devirtualization ENABLED + final ENABLED:"
+    COMMAND $<TARGET_FILE:devirt_enabled_final>
+    COMMAND ${CMAKE_COMMAND} -E echo ""
+    COMMAND ${CMAKE_COMMAND} -E echo "2. Devirtualization ENABLED + final DISABLED:"
+    COMMAND $<TARGET_FILE:devirt_enabled_nofinal>
+    COMMAND ${CMAKE_COMMAND} -E echo ""
+    COMMAND ${CMAKE_COMMAND} -E echo "3. Devirtualization DISABLED + final ENABLED:"
+    COMMAND $<TARGET_FILE:devirt_disabled_final>
+    COMMAND ${CMAKE_COMMAND} -E echo ""
+    COMMAND ${CMAKE_COMMAND} -E echo "4. Devirtualization DISABLED + final DISABLED:"
+    COMMAND $<TARGET_FILE:devirt_disabled_nofinal>
     DEPENDS devirt_enabled_final devirt_enabled_nofinal devirt_disabled_final devirt_disabled_nofinal
 )
