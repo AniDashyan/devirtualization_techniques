@@ -12,8 +12,11 @@ add_executable(devirt_enabled_nofinal ${SOURCES})    # -fdevirtualize + no FINAL
 add_executable(devirt_disabled_final ${SOURCES})     # -fno-devirtualize + FINAL
 add_executable(devirt_disabled_nofinal ${SOURCES})   # -fno-devirtualize + no FINAL
 
-# Common compiler flags
-set(COMMON_FLAGS -O2 -Wall -Wextra -g)
+if(MSVC)
+    set(COMMON_FLAGS /O2 /W4 /Zi)
+else()
+    set(COMMON_FLAGS -O2 -Wall -Wextra -g)
+endif()
 
 target_compile_options(devirt_enabled_final PRIVATE
     ${COMMON_FLAGS}
